@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+import javafx.application.Application;
+
 /**
  * @author   Lize Chen 
  * This program reads a file and selects a random quote to be the 
@@ -42,6 +44,12 @@ public class cryptogram {
 	private static Map<Character, Character> record;
 	
 	public static void main(String[] args) {
+		Application.launch(CryptogramGUIView.class, args);
+		System.exit(0);
+		
+		
+		
+		
 		startUp(null, decoded);
 		boolean ifBreak = false;
 		Scanner reader = null;
