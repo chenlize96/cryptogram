@@ -1,12 +1,16 @@
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.scene.layout.BorderPane;
@@ -20,9 +24,11 @@ public class CryptogramGUIView extends Application implements Observer {
 	public   List<Object> decodedGrid;
 	public GridPane grid;
 	
+	public CryptogramModel m;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
-		CryptogramModel m = new CryptogramModel();
+		m = new CryptogramModel();
 		CryptogramController c = new CryptogramController(this, m);
 		m.addObserver(this);
 		grid = new GridPane(); 
@@ -40,13 +46,29 @@ public class CryptogramGUIView extends Application implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		System.out.println(arg);
-		List<Character> decode = (List<Character>) arg;
+		Map<Character, Character> record = (Map<Character, Character>) arg;
 		int gridSize = grid.getChildren().size();
 		for (int i = 0; i < gridSize; i++) {
 			VBox vbox = (VBox) grid.getChildren().get(i);
+			Label label = (Label) vbox.getChildren().get(1);
 			TextField text = (TextField) vbox.getChildren().get(0);
-			text.setText(decode.get(i) + "");
+			
+			if (record.containsKey(label.getText().charAt(0))) {
+				if (!(record.get(label.getText().charAt(0)) == null)) {
+					text.setText(record.get(label.getText().charAt(0)) + "");
+				}
+			}
+			
 		}
+		
+		if (m.original.equals(m.decoded)) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Message");
+			alert.setContentText("You won!\n");
+			alert.showAndWait();
+		}
+		
+		
 		
 		
 	}

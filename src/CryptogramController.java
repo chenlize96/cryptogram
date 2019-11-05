@@ -92,7 +92,7 @@ public class CryptogramController {
 
 	public void setGrids(GridPane grid) {
 		for (int i = 0; i < model.encodeInitial.size(); i++) {
-			for (int j = 0; j < model.encodeInitial.get(i).length(); j++) {
+			for (int j = 0; j < model.encodeInitial.get(i).trim().length(); j++) {
 				TextField textField = new TextField(); 
 				textField.setAlignment(Pos.CENTER);  
 				textField.setPrefColumnCount(1);

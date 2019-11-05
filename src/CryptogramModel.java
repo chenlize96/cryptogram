@@ -37,9 +37,6 @@ public class CryptogramModel extends Observable{
 			}
 			decoded.set(i, record.get(encoded.get(i)));
 		}
-
-		setChanged();
-		notifyObservers(decoded);
 		return decoded;
 	}
 
@@ -50,6 +47,8 @@ public class CryptogramModel extends Observable{
 		execute(index, encryption, record, encoded);
 		decoded = decode(record, encoded, decoded);
 		System.out.println();
+		setChanged();                        //
+		notifyObservers(record);             //
 		if (original.equals(decoded)) {
 			return true; // break the loop if succeed in completing
 		}
@@ -95,6 +94,8 @@ public class CryptogramModel extends Observable{
 				break;
 			}
 		}
+		setChanged();
+		notifyObservers(record);
 		return record;
 	}
 
