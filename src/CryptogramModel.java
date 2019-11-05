@@ -142,8 +142,8 @@ public class CryptogramModel extends Observable{
 		encryption = getEncryptionKey();
 		if (encodedList == null) 
 			encodedList = encode(encryption, original);	
-		encodeInitial = display(encodedList); // no more than 30 characters
-		for (String word: display(encodedList))
+		encodeInitial = display(encodedList, 30); // no more than 30 characters
+		for (String word: display(encodedList, 80)) // no more than 80 characters
 			System.out.println(word.trim());
 		record = new HashMap<>();
 		for (char i = 65; i < 91; i++) 
@@ -163,7 +163,7 @@ public class CryptogramModel extends Observable{
 	}
 
 
-	public List<String> display(List<Character> encoded) {
+	public List<String> display(List<Character> encoded, int num) {
 		int j = 0; // it should not exceed 80
 		int k = 0; // renew when meet a space
 		String str = "";
@@ -174,15 +174,15 @@ public class CryptogramModel extends Observable{
 			// meet a space
 			if (encoded.get(i) == ' ') 
 				k = 0;
-			if (j == 30 && i + 1 < encoded.size() && 
+			if (j == num && i + 1 < encoded.size() && 
 					encoded.get(i + 1) != ' '){
 				str = str.substring(0, str.length() - k);
 				words.add(str);
 				i = i - k;
 				str = ""; j = 0; k = 0;
-			}else if (j <= 30 && i + 1 == encoded.size()) {
+			}else if (j <= num && i + 1 == encoded.size()) {
 				words.add(str);
-			}else if (j == 30 && i + 1 < encoded.size() && 
+			}else if (j == num && i + 1 < encoded.size() && 
 					encoded.get(i + 1) == ' ') {
 				words.add(str);
 				str = ""; j = 0; k = 0; i++;

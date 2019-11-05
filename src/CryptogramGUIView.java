@@ -66,6 +66,13 @@ public class CryptogramGUIView extends Application implements Observer {
 			alert.setTitle("Message");
 			alert.setContentText("You won!\n");
 			alert.showAndWait();
+			for (int i = 0; i < gridSize; i++) {
+				VBox vbox = (VBox) grid.getChildren().get(i);
+				TextField text = (TextField) vbox.getChildren().get(0);
+				text.setDisable(true);
+				
+				
+			}
 		}
 		
 		
