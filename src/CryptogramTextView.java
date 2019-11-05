@@ -180,7 +180,7 @@ public class CryptogramTextView {
 	 * @param record     the player decryption mappings
 	 * @param encoded    the encoded row
 	 * @param decoded    the user solution
-	 * @return decoded   the updated user solution
+	 * @return    the updated user solution
 	 */	
 	public  List<Character> decode(Map<Character, Character> record, 
 			List<Character> encoded, List<Character> decoded){
@@ -388,7 +388,7 @@ public class CryptogramTextView {
 	 * Open the file and change all to upper case
 	 *
 	 * @param  fileName   the name of file
-	 * @return rows       the list of rows
+	 * @return       the list of rows
 	 */	
 	public   List<String> openFile(String fileName) {
 		Scanner sc = null;

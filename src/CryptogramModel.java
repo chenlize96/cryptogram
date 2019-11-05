@@ -23,7 +23,14 @@ public class CryptogramModel extends Observable{
 	}
 
 
-
+	/**
+	 * Decode the encoded row according to player mappings
+	 *
+	 * @param record     the player decryption mappings
+	 * @param encoded    the encoded row
+	 * @param decoded    the user solution
+	 * @return    the updated user solution
+	 */	
 	public List<Character> decode(Map<Character, Character> record, 
 			List<Character> encoded, List<Character> decoded){
 		for (int i = 0; i < encoded.size(); i++) {
@@ -40,7 +47,13 @@ public class CryptogramModel extends Observable{
 		return decoded;
 	}
 
-
+	/**
+	 * Read the command and execute it,
+	 * and check if the player succeeds in guessing
+	 * 
+	 * @param  strCommand the input command in uppercase
+	 * @return true       if the player got the correct answer, otherwise false
+	 */
 	public boolean process(String strCommand) {
 		String[] command = strCommand.split("\\s+");
 		int index = readCommand(command, record);
@@ -55,6 +68,14 @@ public class CryptogramModel extends Observable{
 		return false;
 	}
 
+	/**
+	 * Execute the function corresponding to the index
+	 *
+	 * @param index       the input instruction
+	 * @param encryption  maps Characters to Characters and for each letter
+	 * @param record      store the player decryption mappings
+	 * @param encoded     the encoded row
+	 */	
 	public void execute(int index, Map<Character, Character> encryption,
 			Map<Character, Character> record, List<Character> encoded) {
 		if (index == 1) {
@@ -80,6 +101,14 @@ public class CryptogramModel extends Observable{
 
 	}
 
+	/**
+	 * Display one correct mapping that has not yet been guessed
+	 *
+	 * @param encryption  maps Characters to Characters and for each letter
+	 * @param record      store the player decryption mappings
+	 * @param encoded     the encoded row
+	 * @return record     the updated player solution
+	 */
 	public Map<Character, Character> 
 	getHint(Map<Character, Character> encryption,
 			Map<Character, Character> record, List<Character> encoded) {
@@ -99,9 +128,16 @@ public class CryptogramModel extends Observable{
 		return record;
 	}
 
-
-
-
+	/**
+	 * Read command, then give the index
+	 * Something change in this function, if the command is "X =" OR 
+	 * "REPLACE X BY", then the guess of X will be erased
+	 *
+	 * @param  command   the input string
+	 * @param  record    the player decryption mappings
+	 * @return index     different indices mean different instructions,
+	 *                   if there is an error input, return -1
+	 */	
 	public int readCommand(String[] command, 
 			Map<Character, Character> record) {
 		if (command[0].equals("FREQ"))
@@ -132,10 +168,13 @@ public class CryptogramModel extends Observable{
 
 
 
-
-
-
-
+	/**
+	 * Create decoded list which has the same space and punctuation as encoded
+	 *
+	 * @param encodedList    the encoded row
+	 * @param decodedList    new list of character
+	 * @return decoded       the decoded row for test
+	 */	
 	public List<Character> startUp(List<Character> encodedList, 
 			List<Character> decodedList){
 		original = selectRandomRow(openFile("quotes.txt"));
@@ -162,7 +201,13 @@ public class CryptogramModel extends Observable{
 		return decodedList; // for test
 	}
 
-
+	/**
+	 * Break each at whitespace or punctuation so that each part does not 
+	 * exceed 30 characters
+	 *
+	 * @param  encoded   the encoded row
+	 * @return words     the length of strings in this list do not exceed 30
+	 */	
 	public List<String> display(List<Character> encoded, int num) {
 		int j = 0; // it should not exceed 80
 		int k = 0; // renew when meet a space
@@ -191,6 +236,12 @@ public class CryptogramModel extends Observable{
 		return words;
 	}
 
+	/**
+	 * Open the file and change all to upper case
+	 *
+	 * @param  fileName   the name of file
+	 * @return       the list of rows
+	 */	
 	public List<String> openFile(String fileName) {
 		Scanner sc = null;
 		List<String> rows = new ArrayList<>();
@@ -206,6 +257,12 @@ public class CryptogramModel extends Observable{
 		return rows;
 	}
 
+	/**
+	 * Select a random row for encryption
+	 *
+	 * @param  rows      the list of rows
+	 * @return original  the row selected
+	 */	
 	public List<Character> selectRandomRow(List<String> rows){
 		Random rand = new Random(); 
 		int index = rand.nextInt(rows.size()); 
@@ -216,6 +273,11 @@ public class CryptogramModel extends Observable{
 		return original;
 	}
 
+	/**
+	 * Store the random encryption key
+	 *
+	 * @return encryption  the encryption key
+	 */	
 	public Map<Character, Character> getEncryptionKey() {
 		List<Character> keys = new ArrayList<>();
 		List<Character> values = new ArrayList<>();
@@ -240,7 +302,13 @@ public class CryptogramModel extends Observable{
 		return encryption;
 	}
 
-
+	/**
+	 * Encode the original row according to the encryption key
+	 *
+	 * @param  encryption  the encryption key
+	 * @param  original    the row selected
+	 * @return encoded     encoded row
+	 */	
 	public List<Character> encode(Map<Character, Character> encryption, 
 			List<Character> original) {
 		List<Character> encoded = new ArrayList<>();
@@ -256,7 +324,12 @@ public class CryptogramModel extends Observable{
 		return encoded;
 	}
 
-
+	/**
+	 * Display the letter frequencies in the encrypted quotation 
+	 *
+	 * @param encoded     the encoded row
+	 * @return freq       mapping the letter to its occurence
+	 */
 	public Map<Character, Integer> getFreq(List<Character> encoded) {
 		Map<Character, Integer> freq = new HashMap<>();
 		for (char i = 65; i < 91; i++) 

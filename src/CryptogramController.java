@@ -26,6 +26,12 @@ public class CryptogramController {
 		this.view = view;
 	}
 
+	/**
+	 * Set eventhandle for start
+	 *
+	 * @param  p  boarderpane
+	 * @return button
+	 */	
 	public Button setStart(BorderPane p) {
 		Button start = new Button("New Puzzle ");
 		start.setOnAction(new EventHandler<ActionEvent>() {
@@ -42,6 +48,12 @@ public class CryptogramController {
 		return start;
 	}
 	
+	/**
+	 * Set eventhandle for hint
+	 *
+	 * @param  p  boarderpane
+	 * @return button
+	 */	
 	public Button setHint(BorderPane p) {
 		Button hint = new Button("Hint");
 		hint.setOnAction(new EventHandler<ActionEvent>() {
@@ -57,6 +69,12 @@ public class CryptogramController {
 	}
 	
 
+	/**
+	 * Set eventhandle for checkbox
+	 *
+	 * @param  p  boarderpane
+	 * @return hbox
+	 */	
 	private HBox getFreqBox(Map<Character, Integer> freq, char start, 
 			char end) {
 		VBox vbox1 = new VBox(); VBox vbox2 = new VBox();
@@ -69,6 +87,11 @@ public class CryptogramController {
 		return new HBox(vbox1, vbox2);
 	}
 	
+	/**
+	 * combine all
+	 *
+	 * @param  p  boarderpane
+	 */	
 	public void setButtons(BorderPane p) {
 		Button start = setStart(p); Button hint = setHint(p);
 		CheckBox checkBox = new CheckBox("Show Freq");
