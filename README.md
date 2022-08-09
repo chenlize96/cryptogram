@@ -1,8 +1,5 @@
 
-# CSC 335 Project 4: Cryptogram GUI
-
-
-Project Description
+Cryptogram GUI
 ===================
 
 For this project, we will use JavaFX to create GUI for our Cryptogram game.
@@ -61,9 +58,6 @@ handler.
 MVC 
 ----
 
-You are required to create this version of the project using the MVC
-architectural pattern. You must have the following 5 classes:
-
 1.  Cryptogram – This is the main class. When invoked with a command line
     argument of “-text”, you will launch the text-oriented UI. When invoked with
     a command line argument 0f “-window” you’ll launch the GUI view. The default
@@ -81,44 +75,6 @@ architectural pattern. You must have the following 5 classes:
 5.  CryptogramModel – This class contains all of the game state and must be also
     shared between the two front ends.
 
-Observer/Observable 
-====================
 
-For the GUI front end, when the controller changes the model, we’d like to
-change the view. The model can do this for us, by notifying us when the model
-changes if our view is an Observer and the model is an Observable.
-
-Have your model class extend java.util.Observable and have your view class
-implement java.util.Observer. As a requirement to the Observer interface, you
-will need to implement the update(Observable o, Object arg) method in the View.
-This method should change the TextFields of **ONLY** the letters that represents
-the most recent guess. You can learn which TextFields to update by passing the
-new guess via the Object arg parameter. This is set by the model calling
-setChanged(); and notifyObservers(Object arg). Whatever we pass to
-notifyObservers() will become the arg parameter of update().
-
-Requirements
-============
-
--   A main class, that launches your view using :  
-    Application.launch(CryptogramGUIView.class, args);  
-    for the GUI version or launches the text version, depending on the
-    commandline argument given
-
--   At least the five (5) classes described above, with more as you deem
-    necessary (for instance, the code that breaks the quote into lines may be in
-    its own object to more easily share between the two front-ends)
-
--   You are **not** required to use ArrayMap any longer. If it didn’t quite
-    work, that’s fine, you may use HashMap for your Map-ping needs.
-
--   The GitHub repository is once again empty, so create a new Java Project in
-    eclipse and import what files from the previous projects you’d like to start
-    with
-
-Submission
-==========
-
-As always, the last pushed commit prior to the due date will be graded.
 
  
