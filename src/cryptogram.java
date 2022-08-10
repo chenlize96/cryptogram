@@ -13,7 +13,7 @@
 
 import javafx.application.Application;
 
-public class cryptogram {
+public class Cryptogram {
 		
 	public static void main(String[] args) {
 		if (args.length == 1 && args[0].equals("-text")) {
