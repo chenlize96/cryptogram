@@ -40,7 +40,7 @@ space or non-letter character, put the text in both the TextField and the Label,
 and disable the TextField so it cannot be edited.
 </p>
 <p>
-<img src="./Screenshots/board.png" width="400">
+<img src="./Screenshots/board.png" width="700">
 </p>
 <p>
 Add this GridPane to a BorderLayout’s center position. In the right position,
@@ -65,7 +65,7 @@ will request the view update itself.
 
 | Frequency | Hints |
 |:----------:|:----------:|
-| <img src="./Screenshots/freq.png" width="300"> | <img src="./Screenshots/hint.png" width="150"> |
+| <img src="./Screenshots/freq.png" width="100"> | <img src="./Screenshots/hint.png" width="500"> |
 
 <p>
 Do not let multiple letters into a box. You may wish to “eat” the KeyPressed
@@ -74,7 +74,7 @@ already added it. You can do that by consume()ing the event in your event
 handler.
 </p>
 <p>
-<img src="./Screenshots/win.png" width="300">
+<img src="./Screenshots/win.png" width="500">
 </p>
 
 <br>
